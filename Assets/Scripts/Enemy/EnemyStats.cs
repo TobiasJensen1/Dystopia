@@ -66,7 +66,7 @@ public class EnemyStats : MonoBehaviour
     //Destroy and remove enemy from list when health <= 0, disables box collider and makes enemy null to stop combat and collision while death animation plays
     void destroyWhenDead()
     {
-        if (health <= 0 || currentHealth <= 0 && !death)
+        if (health <= 0 && !death)
         {
             if (enemies.Contains(transform.gameObject))
             {
@@ -77,8 +77,6 @@ public class EnemyStats : MonoBehaviour
             {
                 GameObject.Find("Controllers").transform.Find("QuestController").GetComponent<QuestHandler>().currKills++;
             }
-
-
             death = true;
             active = false;
             health = 0;
