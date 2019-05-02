@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PuzzleScript : MonoBehaviour
 {
+
+   
+
     //lever puzzle bool
     public  bool leverA;
     public  bool leverB;
