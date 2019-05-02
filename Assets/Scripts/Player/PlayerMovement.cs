@@ -33,11 +33,12 @@ public class PlayerMovement : MonoBehaviour
         //Castlegate = 83, height, 231
 
         //Scene 3 start = 0, 15, 5
+        //Cemetary = 10,8f.height,158.9f
 
 
         GetComponent<Animator>().Play("Idle");
-        transform.position = new Vector3(-35, height, -25);
-        moveTo = Vector3.MoveTowards(transform.position, new Vector3(-35, height, -25), speed * Time.deltaTime);
+        transform.position = new Vector3(10.8f, height, 158.9f);
+        moveTo = Vector3.MoveTowards(transform.position, new Vector3(10.8f, height, 158.9f), speed * Time.deltaTime);
     }
 
     // Update is called once per frame
