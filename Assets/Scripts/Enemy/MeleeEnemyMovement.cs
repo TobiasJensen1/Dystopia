@@ -25,8 +25,15 @@ public class MeleeEnemyMovement : MonoBehaviour
 
         if (nma == null)
         {
+            
             print("no navmeshagent");
         }
+        /*
+        if(destination == null)
+        {
+           destination = GameObject.Find("Player").transform;
+        }
+        */
     }
 
     // Update is called once per frame
