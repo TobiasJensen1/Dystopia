@@ -8148,7 +8148,7 @@ MonoBehaviour:
   maxHealth: 100
   fury: 100
   maxFury: 100
-  damage: 1
+  damage: 10
   level: 1
   healthAndFuryContainer: {fileID: 531703649}
 --- !u!65 &843912097
@@ -8513,6 +8513,19 @@ MonoBehaviour:
   damage: 0
   aggroRange: 10
   enemyHealthbars: {fileID: 1954084443}
+--- !u!65 &872367775
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872367770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &877838303
 PrefabInstance:
   m_ObjectHideFlags: 0
