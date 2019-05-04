@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa047883e4af5b41b916c1677bfebdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyName: Skeleton
+  EnemyName: Raised Skeleton
   maxHealth: 0
   currentHealth: 0
   health: 10

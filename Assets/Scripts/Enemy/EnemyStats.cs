@@ -72,6 +72,14 @@ public class EnemyStats : MonoBehaviour
             {
                 enemies.Remove(transform.gameObject);
             }
+
+            //used for Necromancers/Summoners
+          if(EnemyName == "Raised Skeleton")
+            {
+                NecromancerScript.isdead = true;
+                print("stats only once");
+            }
+
             //Used for farmerevent
             if(EnemyName == "Troll Grunt")
             {
@@ -90,6 +98,9 @@ public class EnemyStats : MonoBehaviour
 
     public IEnumerator deactivateEnemy()
     {
+        //necromancer -- does not count this when next Raised skeleton is dead. (cheese code)
+        health = 1;
+
         yield return new WaitForSeconds(3f);
         transform.gameObject.SetActive(false);
         StopCoroutine("deactivateEnemy");

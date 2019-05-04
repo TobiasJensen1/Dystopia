@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MeleeEnemyMovement : MonoBehaviour
 {
     [SerializeField]
-    Transform destination;
+    public Transform destination;
 
     NavMeshAgent nma;
     Vector3 targetVector;
@@ -28,12 +28,12 @@ public class MeleeEnemyMovement : MonoBehaviour
             
             print("no navmeshagent");
         }
-        /*
+        
         if(destination == null)
         {
            destination = GameObject.Find("Player").transform;
         }
-        */
+        
     }
 
     // Update is called once per frame
