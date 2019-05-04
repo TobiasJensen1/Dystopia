@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class NecromancerScript : MonoBehaviour
 {
-    //if skeleton is dead to activate from enemy stats to start skeletonsdeath method.
+    //if skeleton is dead, activate bool from enemystats to start skeletonsdeath corutine.
     public static bool isdead;
 
     //if all skeleton is active
@@ -45,6 +45,7 @@ public class NecromancerScript : MonoBehaviour
         for(int i = 0; i < 5;i++)
         {
            GameObject obj =(GameObject)Instantiate(skeleton);
+       
             obj.SetActive(false);
             summons.Add(obj);  
         }
@@ -59,8 +60,9 @@ public class NecromancerScript : MonoBehaviour
     {
         if (isdead)
         {
+            print(isdead);
             isdead = false;
-            Skeletonsdeath();
+            StartCoroutine("Skeletonsdeath");
             
         }
        
@@ -69,7 +71,6 @@ public class NecromancerScript : MonoBehaviour
         
         if(distance <= aggro && !isaggro)
         {
-            transform.LookAt(player.transform.position);
             isaggro = true;
             StartCoroutine("Necromancer");
             
@@ -79,24 +80,36 @@ public class NecromancerScript : MonoBehaviour
             isaggro = false;
         }
 
+        //looks at player
+        if(distance <= aggro)
+        {
+            transform.LookAt(player.transform.position);
+        }
+
 
     }
 
 
-    void Skeletonsdeath()
+    IEnumerator Skeletonsdeath()
     {
-        print("run once");
         
+      
         for (int i = 0; i < summons.Count; i++)
         {
+          
             if (summons[i].GetComponent<EnemyStats>().health == 0)
             {
+
                
-                GetComponent<EnemyStats>().health -= 10;
+                print(i);
+                GetComponent<EnemyStats>().currentHealth -= 10;
+                GetComponent<EnemyStats>().health -= 20;
+                StopCoroutine("Skeletonsdeath");
+                break;
 
             }
         }
-        
+        yield return null;
     }
 
 
@@ -109,12 +122,12 @@ public class NecromancerScript : MonoBehaviour
         while (true)
         {
      
-            //cheks if all in the list is active
+            //cheks if all in the list is active and not dead
             if (!allactive)
             {
                 for (int i = 0; i < summons.Count; i++)
                 {
-                    if (!summons[i].activeInHierarchy)
+                    if (!summons[i].activeInHierarchy && summons[i].GetComponent<EnemyStats>().health != 0)
                     {
                         allactive = false;
                         break;
@@ -144,19 +157,15 @@ public class NecromancerScript : MonoBehaviour
 
                 //spawns skeleton on random chosen locations
                 summons[random].SetActive(true);
-                //summons[random].GetComponent<MeleeEnemyMovement>().destination = player.transform;
-
-           
-
                 summons[random].GetComponent<NavMeshAgent>().Warp(spawnlocation[randomloc].transform.position);
-                //summons[random].transform.position = new Vector3(spawnlocation[randomloc].transform.position.x, 15, spawnlocation[randomloc].transform.position.z);
-                //new Vector3(spawnlocation[randomloc].transform.position.x, 15, spawnlocation[randomloc].transform.position.z);
+                
 
                 randomrolled.Add(random);
             }
             else if(allactive)
             {
                 anim.Play("idle_combat");
+                StopCoroutine("Necromancer");
             }
 
             yield return new WaitForSeconds(5f);

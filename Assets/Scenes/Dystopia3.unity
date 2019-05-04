@@ -1767,6 +1767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Necromancer
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011578242470, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.72024
@@ -8502,7 +8506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa047883e4af5b41b916c1677bfebdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyName: 
+  EnemyName: Necromancer
   maxHealth: 0
   currentHealth: 0
   health: 50
@@ -22186,6 +22190,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750360586532026755, guid: 2892406f8b2b49247b38a1a5c21e97ee,
+        type: 3}
+      propertyPath: EnemyName
+      value: Skeleton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2892406f8b2b49247b38a1a5c21e97ee, type: 3}

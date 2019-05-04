@@ -77,7 +77,6 @@ public class EnemyStats : MonoBehaviour
           if(EnemyName == "Raised Skeleton")
             {
                 NecromancerScript.isdead = true;
-                print("stats only once");
             }
 
             //Used for farmerevent
@@ -98,10 +97,15 @@ public class EnemyStats : MonoBehaviour
 
     public IEnumerator deactivateEnemy()
     {
-        //necromancer -- does not count this when next Raised skeleton is dead. (cheese code)
-        health = 1;
 
-        yield return new WaitForSeconds(3f);
+        if (EnemyName != "Necromancer")
+        {
+            yield return new WaitForSeconds(3f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(4.5f);
+        }
         transform.gameObject.SetActive(false);
         StopCoroutine("deactivateEnemy");
     }
