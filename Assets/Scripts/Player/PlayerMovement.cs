@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool combat;
 
     bool informationWindowActive;
-    bool cutScene;
+     bool cutScene;
 
 
     // Start is called before the first frame update
