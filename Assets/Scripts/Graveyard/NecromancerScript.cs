@@ -108,6 +108,7 @@ public class NecromancerScript : MonoBehaviour
                 break;
 
             }
+
         }
         yield return null;
     }
