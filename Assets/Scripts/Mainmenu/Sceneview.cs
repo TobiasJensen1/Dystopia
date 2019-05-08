@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Sceneview : MonoBehaviour
 {
+
+    public float timer;
+
     bool scene1;
     bool scene2;
     bool scene3;
@@ -18,7 +21,10 @@ public class Sceneview : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scene1 = true;
+        transform.eulerAngles = new Vector3(12.3f,72.3f,-2.4f);
+        transform.position = new Vector3(5.8f,31.3f,41.92f);
+        StartCoroutine("ScenePlayWait");
+        
         
     }
 
@@ -55,8 +61,19 @@ public class Sceneview : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, five.transform.position) < 0.05f)
         {
-            print("jewp");
+            transform.eulerAngles = new Vector3(12.3f, 72.3f, -2.4f);
+            transform.position = new Vector3(5.8f, 31.3f, 41.92f);
+            StartCoroutine("ScenePlayWait");
+            scene3 = false;
         }
+    }
+
+
+    IEnumerator ScenePlayWait()
+    {
+        yield return new WaitForSeconds(timer);
+        scene1 = true;
+        StopCoroutine("ScenePlayWait");
     }
 
     

@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 374a7575be8d04b45a467ddc0e6a3bb3
+  - enabled: 1
+    path: Assets/Scenes/Dystopia1.unity
+    guid: b8eb0f7ecd29f7c4a909a60080d9e78b
+  - enabled: 1
+    path: Assets/Scenes/Dystopia3.unity
+    guid: 52fec11500036bf4a95bf13d04c9b018
   m_configObjects: {}

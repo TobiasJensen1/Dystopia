@@ -39,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         GetComponent<Animator>().Play("Idle");
-        transform.position = new Vector3(96, 15, 128);
-        moveTo = Vector3.MoveTowards(transform.position, new Vector3(96, 15, 128), speed * Time.deltaTime);
+        transform.position = new Vector3(-35, height, -25);
+        moveTo = Vector3.MoveTowards(transform.position, new Vector3(-35, height, -25), speed * Time.deltaTime);
     }
 
     // Update is called once per frame

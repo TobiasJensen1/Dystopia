@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Teleports : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class Teleports : MonoBehaviour
     {
         if(other.tag == "TeleportCityFromFarm")
         {
-            print("hejminven");
+            SceneManager.LoadScene(2);
+            GetComponent<PlayerMovement>().moveTo = new Vector3(0, 15, 5);
         }
     }
 }
