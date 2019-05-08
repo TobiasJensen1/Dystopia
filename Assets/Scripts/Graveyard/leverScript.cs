@@ -37,7 +37,7 @@ public class leverScript : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         if (clickable)
         {
@@ -60,6 +60,4 @@ public class leverScript : MonoBehaviour
         }
 
     }
-
-
 }

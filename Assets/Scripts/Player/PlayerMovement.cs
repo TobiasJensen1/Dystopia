@@ -34,13 +34,14 @@ public class PlayerMovement : MonoBehaviour
 
         //Scene 3 start = 0, 15, 5
         //Cemetary = 10.8f, height ,158.9f
+        //TombBoss = 45, 15, 225
        //JungleTemple start = 96, 15, 128
     
 
 
         GetComponent<Animator>().Play("Idle");
-        transform.position = new Vector3(-35, height, -25);
-        moveTo = Vector3.MoveTowards(transform.position, new Vector3(-35, height, -25), speed * Time.deltaTime);
+        transform.position = new Vector3(45, 15, 225);
+        moveTo = Vector3.MoveTowards(transform.position, new Vector3(45, 15, 225), speed * Time.deltaTime);
     }
 
     // Update is called once per frame

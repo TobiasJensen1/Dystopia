@@ -7,8 +7,10 @@ public class PuzzleScript : MonoBehaviour
 
     //Trigger mini boss
     public GameObject Necro;
+    public GameObject dungeonEntranceObject;
+    float distance;
 
-    GameObject Player;
+    GameObject player;
 
     //doors
     public GameObject door1;
@@ -26,7 +28,7 @@ public class PuzzleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    Player = GameObject.Find("Player");    
+    player = GameObject.Find("Player");    
     }
 
     // Update is called once per frame
@@ -38,20 +40,20 @@ public class PuzzleScript : MonoBehaviour
           
         }
 
+        if (isopen)
+        {
+            dungeonEntrance();
+        }
+
 
         if(Necro.GetComponent<EnemyStats>().health == 0 && !isopen)
         {
 
             //not opening the door smoothly (need a fix in the future ZZzzz)
-            door1Y += door1.transform.eulerAngles.y * 0.0006f * Time.deltaTime;
-            door2Y += door2.transform.eulerAngles.y * 0.0006f * Time.deltaTime;
-          
-            door1.transform.eulerAngles = new Vector3(-90, -door1Y,0);
-            door2.transform.eulerAngles = new Vector3(-90, door2Y,0);
-            if (door1.transform.eulerAngles.y >= 90f && door1.transform.eulerAngles.y >= 90f)
-            {
-                isopen = true;
-            }
+           
+            door1.transform.eulerAngles = new Vector3(-90, -90,0);
+            door2.transform.eulerAngles = new Vector3(-90, 90,0);
+            isopen = true;
         }
 
     }
@@ -65,10 +67,26 @@ public class PuzzleScript : MonoBehaviour
         yield return new WaitForSeconds(3f);
        // Camera.main.GetComponent<CameraBehaviour>().player = Player.transform.gameObject;
         Camera.main.GetComponent<CameraBehaviour>().cutScene = false;
-        Camera.main.GetComponent<CameraBehaviour>().player = Player;
+        Camera.main.GetComponent<CameraBehaviour>().player = player;
 
         StopCoroutine("Cutscene");
     
+    }
+
+
+    void dungeonEntrance()
+    {
+        distance = Vector3.Distance(dungeonEntranceObject.transform.position, player.transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.name == "dungeonEntrance" && distance <= 4)
+            {
+                print("hej");
+            }
+        }
     }
 
 

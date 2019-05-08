@@ -29,6 +29,7 @@ public class Combat : MonoBehaviour
     bool w;
     bool e;
     bool r;
+    bool potions;
 
     bool aoe;
     List<GameObject> enemies;
@@ -58,6 +59,9 @@ public class Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        potions = quest.GetComponent<QuestHandler>().potions;
+
+
         if (player.GetComponent<PlayerMovement>().enemy != null)
         {
             enemies = EnemyStats.enemies;
@@ -73,9 +77,67 @@ public class Combat : MonoBehaviour
         combatCheck = player.GetComponent<PlayerMovement>().combat;
 
         combat();
+        usePotion();
         checkUnlockedAbilities();
         checkInactiveAbility();
     }
+
+
+    void usePotion()
+    {
+        if (potions)
+        {
+            //Healthpot
+            if (Input.GetKey("1"))
+            {
+                if (skills[5].currentCoolDown >= skills[5].coolDown)
+                {
+                    //Cant use potion if full health
+                    if (player.GetComponent<PlayerStats>().maxHealth < player.GetComponent<PlayerStats>().health)
+                    {
+                        //If healthpot brings playerhealth over max, set playerhealth to max
+                        if (player.GetComponent<PlayerStats>().maxHealth > player.GetComponent<PlayerStats>().health + 50)
+                        {
+                            player.GetComponent<PlayerStats>().health = player.GetComponent<PlayerStats>().maxHealth;
+                            skills[5].currentCoolDown = 0;
+                        }
+                        else
+                        {
+                            //Gain 50 health
+                            player.GetComponent<PlayerStats>().health += 50;
+                            skills[5].currentCoolDown = 0;
+                        }
+                    }
+                }
+            }
+            //FuryPot
+            if (Input.GetKey("2"))
+            {
+
+                if (skills[6].currentCoolDown >= skills[6].coolDown)
+                {
+                    //Cant use potion if full fury
+                    if (player.GetComponent<PlayerStats>().maxFury < player.GetComponent<PlayerStats>().fury)
+                    {
+                        //If furypot brings playerfury over max, set playerfury to max
+                        if (player.GetComponent<PlayerStats>().maxFury > player.GetComponent<PlayerStats>().fury + 50)
+                        {
+                            player.GetComponent<PlayerStats>().fury = player.GetComponent<PlayerStats>().maxFury;
+                            skills[6].currentCoolDown = 0;
+                        }
+                        else
+                        {
+                            //Gain 50 fury
+                            player.GetComponent<PlayerStats>().fury += 50;
+                            skills[6].currentCoolDown = 0;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
 
 
 

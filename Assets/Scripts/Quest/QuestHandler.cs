@@ -25,6 +25,7 @@ public class QuestHandler : MonoBehaviour
     public bool w;
     public bool e;
     public bool r;
+    public bool potions;
 
     public GameObject worldLight;
     public bool firstQuestAccepted;
@@ -173,9 +174,10 @@ public class QuestHandler : MonoBehaviour
                         {
                             objList.GetComponent<Text>().text += "\n • " + questEvents[2].EventName;
                             transform.Find("ForestBlockade").transform.gameObject.SetActive(false);
-                            //Event enables w ability
+                            //Event enables w ability and potions
                             w = true;
                             wObj.SetActive(true);
+                            potions = true;
                         }
                         openInformationwindow(questEvents[2]);
                         eventActive = false;

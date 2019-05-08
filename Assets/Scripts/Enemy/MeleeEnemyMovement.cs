@@ -95,7 +95,8 @@ public class MeleeEnemyMovement : MonoBehaviour
             //if friendly Npc
             if(transform.GetComponent<EnemyStats>().EnemyName == "Troll Assassin" || transform.GetComponent<EnemyStats>().EnemyName == "Elf Mage")
             {
-                destination.GetComponent<EnemyStats>().currentHealth -= transform.GetComponent<EnemyStats>().damage;
+                destination.GetComponent<EnemyStats>().health = destination.GetComponent<EnemyStats>().currentHealth -= transform.GetComponent<EnemyStats>().damage;
+                destination.GetComponent<EnemyStats>().health = destination.GetComponent<EnemyStats>().currentHealth;
             }
             else
             { 
