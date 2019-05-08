@@ -51,14 +51,14 @@ public class EnemyStats : MonoBehaviour
         {
             enemyHealthbars.setHealth(currentHealth / maxHealth);
         }
-        /*
+        
         if (player.GetComponent<PlayerMovement>().enemy != null)
         {
             if (player.GetComponent<PlayerMovement>().enemy == transform.gameObject)
-            {*/
-                enemyHealthbar.GetComponent<MonoHealthbar>().Health = (int)health;
-            //}
-        //}
+            {
+        enemyHealthbar.GetComponent<MonoHealthbar>().Health = (int)health;
+        }
+        }
     }
 
 
@@ -74,13 +74,13 @@ public class EnemyStats : MonoBehaviour
             }
 
             //used for Necromancers/Summoners
-          if(EnemyName == "Raised Skeleton")
+            if (EnemyName == "Raised Skeleton")
             {
                 NecromancerScript.isdead = true;
             }
 
             //Used for farmerevent
-            if(EnemyName == "Troll Grunt")
+            if (EnemyName == "Troll Grunt")
             {
                 GameObject.Find("Controllers").transform.Find("QuestController").GetComponent<QuestHandler>().currKills++;
             }
@@ -115,26 +115,29 @@ public class EnemyStats : MonoBehaviour
     {
         if (transform.name != "TrollGeneral")
         {
+            if (transform.name != "CorruptedKing")
+            {
 
-            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-            if (distanceToPlayer <= aggroRange)
-            {
-                transform.Find("Healthbar").position = new Vector3(transform.position.x + 0.7f, transform.position.y + 2, transform.position.z + -0.9f);
-                transform.Find("Healthbar").rotation = Quaternion.Euler(Camera.main.transform.position.x - transform.position.x - 20, 90, transform.Find("Healthbar").rotation.z);
-                transform.Find("Healthbar").gameObject.SetActive(true);
-                active = true;
-                if (!enemies.Contains(transform.gameObject))
+                distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+                if (distanceToPlayer <= aggroRange)
                 {
-                    enemies.Add(transform.gameObject);
+                    transform.Find("Healthbar").position = new Vector3(transform.position.x + 0.7f, transform.position.y + 2, transform.position.z + -0.9f);
+                    transform.Find("Healthbar").rotation = Quaternion.Euler(Camera.main.transform.position.x - transform.position.x - 20, 90, transform.Find("Healthbar").rotation.z);
+                    transform.Find("Healthbar").gameObject.SetActive(true);
+                    active = true;
+                    if (!enemies.Contains(transform.gameObject))
+                    {
+                        enemies.Add(transform.gameObject);
+                    }
                 }
-            }
-            if (distanceToPlayer > aggroRange)
-            {
-                transform.gameObject.transform.Find("Healthbar").gameObject.SetActive(false);
-                active = false;
-                if (enemies.Contains(transform.gameObject))
+                if (distanceToPlayer > aggroRange)
                 {
-                    enemies.Remove(transform.gameObject);
+                    transform.gameObject.transform.Find("Healthbar").gameObject.SetActive(false);
+                    active = false;
+                    if (enemies.Contains(transform.gameObject))
+                    {
+                        enemies.Remove(transform.gameObject);
+                    }
                 }
             }
         }
