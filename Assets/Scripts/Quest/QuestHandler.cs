@@ -17,6 +17,8 @@ public class QuestHandler : MonoBehaviour
     public GameObject objList;
 
     //For unlocking abilities
+    [Header("Player Abilities")]
+    [SerializeField]
     public GameObject qObj;
     public GameObject wObj;
     public GameObject eObj;
@@ -86,6 +88,9 @@ public class QuestHandler : MonoBehaviour
 
     public void Update()
     {
+
+        checkAbilities();
+
         questController();
     }
 
@@ -287,5 +292,27 @@ public class QuestHandler : MonoBehaviour
                     informationWindow.SetActive(true);
                 }
             }
+
+
+
+    void checkAbilities()
+    {
+        if (q)
+        {
+            qObj.SetActive(true);
+        }
+        if (w)
+        {
+            wObj.SetActive(true);
+        }
+        if (e)
+        {
+            eObj.SetActive(true);
+        }
+        if (r)
+        {
+            rObj.SetActive(true);
+        }
+    }
 
         }

@@ -24,6 +24,10 @@ public class CorruptedKing : MonoBehaviour
     bool phase4;
     bool center;
 
+    //Mechanic objects
+    public GameObject ringOfFire;
+    public GameObject meteor;
+
 
     GameObject player;
 
@@ -51,6 +55,13 @@ public class CorruptedKing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (meteor != null)
+        {
+            if (meteor.activeSelf)
+            {
+                meteor.transform.position = Vector3.MoveTowards(meteor.transform.position, player.transform.position, 4f * Time.deltaTime);
+            }
+        }
         corruptedKingFight();
     }
 
@@ -97,7 +108,6 @@ public class CorruptedKing : MonoBehaviour
             phase1 = true;
             if (phase1 && !phase2)
             {
-                print("hej");
                 StartCoroutine("phase2Fight");
             }
         }
@@ -125,9 +135,13 @@ public class CorruptedKing : MonoBehaviour
         //If boss is at the middle, start phase2 attack
         if (Vector3.Distance(transform.position, centerObj.transform.position) <= .7f)
         {
+            GetComponent<BoxCollider>().enabled = false;
             center = true;
+            ringOfFire.SetActive(true);
             anim.Play("Phase2");
             yield return new WaitForSeconds(3f);
+            meteor.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
             anim.Play("Idle");
             Camera.main.GetComponent<CameraBehaviour>().player = player;
             phase2 = true;
