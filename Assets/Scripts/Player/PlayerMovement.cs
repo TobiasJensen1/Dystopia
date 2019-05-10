@@ -32,16 +32,15 @@ public class PlayerMovement : MonoBehaviour
         //after farm = 47, height, 221
         //Castlegate = 83, height, 231
 
-        //Scene 3 start = 0, 15, 5
-        //Cemetary = 10.8f, height ,158.9f
-        //TombBoss = 45, 15, 225
-       //JungleTemple start = 96, 15, 128
-    
+        //Main City Start = 160, 15, 320
+        //After City = 135, 15, 160
+        //TombBoss = 175, 15, 232
+
 
 
         GetComponent<Animator>().Play("Idle");
-        transform.position = new Vector3(45, 15, 225);
-        moveTo = Vector3.MoveTowards(transform.position, new Vector3(45, 15, 225), speed * Time.deltaTime);
+        transform.position = new Vector3(175, 15, 232);
+        moveTo = Vector3.MoveTowards(transform.position, new Vector3(175, 15, 232), speed * Time.deltaTime);
     }
 
     // Update is called once per frame

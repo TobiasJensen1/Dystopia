@@ -490,7 +490,7 @@ MonoBehaviour:
   EnemyName: Raised Skeleton
   maxHealth: 0
   currentHealth: 0
-  health: 10
+  health: 1
   damage: 10
   aggroRange: 10
   enemyHealthbars: {fileID: 7750360586416015300}

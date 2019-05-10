@@ -48,11 +48,9 @@ public class PuzzleScript : MonoBehaviour
 
         if(Necro.GetComponent<EnemyStats>().health == 0 && !isopen)
         {
-
-            //not opening the door smoothly (need a fix in the future ZZzzz)
            
-            door1.transform.eulerAngles = new Vector3(-90, -90,0);
-            door2.transform.eulerAngles = new Vector3(-90, 90,0);
+            door1.transform.eulerAngles = new Vector3(0, -90 ,0);
+            door2.transform.eulerAngles = new Vector3(0, -90,0);
             isopen = true;
         }
 
@@ -64,6 +62,7 @@ public class PuzzleScript : MonoBehaviour
         Necro.SetActive(true);
         Camera.main.GetComponent<CameraBehaviour>().cutScene = true;
         Camera.main.GetComponent<CameraBehaviour>().player = Necro;
+
         yield return new WaitForSeconds(3f);
        // Camera.main.GetComponent<CameraBehaviour>().player = Player.transform.gameObject;
         Camera.main.GetComponent<CameraBehaviour>().cutScene = false;
@@ -82,9 +81,11 @@ public class PuzzleScript : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.name == "dungeonEntrance" && distance <= 4)
+            //Transport player to tombboss
+            if (Input.GetMouseButtonDown(0) && hit.collider.name == "dungeonEntrance" && distance <= 4)
             {
-                print("hej");
+                GameObject.Find("Player").transform.position = new Vector3(175, 15, 232);
+                GameObject.Find("Player").GetComponent<PlayerMovement>().moveTo = Vector3.MoveTowards(transform.position, new Vector3(175, 15, 232), 5 * Time.deltaTime);
             }
         }
     }

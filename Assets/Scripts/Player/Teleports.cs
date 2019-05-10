@@ -19,10 +19,15 @@ public class Teleports : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "TeleportCityFromFarm")
+        if(other.name == "EnterCityCollider")
         {
-            SceneManager.LoadScene(2);
-            GetComponent<PlayerMovement>().moveTo = new Vector3(0, 15, 5);
+            transform.position = new Vector3(160, 15, 320);
+            transform.GetComponent<PlayerMovement>().moveTo = Vector3.MoveTowards(transform.position, new Vector3(160,15,320), 5 * Time.deltaTime);
+        }
+        if (other.name == "ExitCityCollider")
+        {
+            transform.position = new Vector3(135, 15, 160);
+            transform.GetComponent<PlayerMovement>().moveTo = Vector3.MoveTowards(transform.position, new Vector3(135, 15, 160), 5 * Time.deltaTime);
         }
     }
 }

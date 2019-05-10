@@ -13,7 +13,7 @@ public class leverScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Lever = GameObject.Find("Graveyard").transform.Find("Puzzle").transform.Find("Graveyard Puzzle").GetComponent<PuzzleScript>();
+        Lever = GameObject.Find("Cemetary").transform.Find("Puzzle").transform.Find("Graveyard Puzzle").GetComponent<PuzzleScript>();
 
         player = GameObject.Find("Player");
         
@@ -44,14 +44,20 @@ public class leverScript : MonoBehaviour
             if (transform.name == "leverA")
             {
                 Lever.leverA = true;
+                transform.Find("Box091").eulerAngles = new Vector3(0, 0, 60);
+                transform.Find("Light").GetComponent<Light>().color = Color.green;
             }
             if (transform.name == "leverB")
             {
                 Lever.leverB = true;
+                transform.Find("Box091").eulerAngles = new Vector3(0, -90, 60);
+                transform.Find("Light").GetComponent<Light>().color = Color.green;
             }
             if (transform.name == "leverC")
             {
                 Lever.leverC = true;
+                transform.Find("Box091").eulerAngles = new Vector3(0, 0, 60);
+                transform.Find("Light").GetComponent<Light>().color = Color.green;
             }
         }
         else
