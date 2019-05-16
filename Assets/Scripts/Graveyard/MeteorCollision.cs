@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeteorCollision : MonoBehaviour
 {
-
+    public bool meteorCheck;
     public float dmg;
 
     private void OnCollisionEnter(Collision collision)
@@ -17,6 +17,7 @@ public class MeteorCollision : MonoBehaviour
         {
             transform.gameObject.SetActive(false);
             collision.gameObject.GetComponent<PlayerStats>().health -= dmg;
+            meteorCheck = true;
         }
     }
 }
