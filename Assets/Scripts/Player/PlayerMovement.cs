@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Moves and rotates player when moving freely
         movement();
         transform.position = Vector3.MoveTowards(transform.position, moveTo, speed * Time.deltaTime);
