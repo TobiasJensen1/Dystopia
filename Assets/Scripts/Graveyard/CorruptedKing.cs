@@ -28,7 +28,9 @@ public class CorruptedKing : MonoBehaviour
     bool phase4;
     //25% health
     bool phase5;
+    //Check if boss is centered in room
     bool center;
+    //check if meteor has detonated
     bool meteorCheck;
 
     //Mechanic objects
@@ -36,8 +38,7 @@ public class CorruptedKing : MonoBehaviour
     public GameObject meteor;
     public GameObject spawn1;
     public GameObject spawn2;
-    public GameObject wof1;
-    public GameObject wof2;
+    public GameObject WallOfFire;
     public GameObject enemy1;
     public GameObject enemy2;
 
@@ -79,12 +80,13 @@ public class CorruptedKing : MonoBehaviour
         //Fight up until meteor has hit
         corruptedKingFight1();
         corruptedKingFight2();
+        corruptedKingFight3();
     }
 
 
     void corruptedKingFight1()
     {
-        if (transform.GetComponent<EnemyStats>().health >= 75)
+        if (transform.GetComponent<EnemyStats>().health > 75)
         {
             if (!phase1)
             {
@@ -127,7 +129,7 @@ public class CorruptedKing : MonoBehaviour
 
     void corruptedKingFight2()
     {
-        if (transform.GetComponent<EnemyStats>().health >= 50)
+        if (transform.GetComponent<EnemyStats>().health > 50)
         {
             if (phase3)
             {
@@ -164,7 +166,49 @@ public class CorruptedKing : MonoBehaviour
             StopCoroutine("meleeAttack");
             StartCoroutine("phase4Fight");
         }
-        
+
+    }
+
+    void corruptedKingFight3()
+    {
+        if (transform.GetComponent<EnemyStats>().health > 25)
+        {
+            if (!enemy1.activeSelf && !enemy2.activeSelf && phase4)
+            {
+                WallOfFire.SetActive(false);
+                transform.GetComponent<BoxCollider>().enabled = true;
+                //also used for npc vs enemy combat
+                if (destination != null && destination.gameObject.activeSelf)
+                {
+                    targetVector = destination.transform.position;
+                    distanceToPlayer = Vector3.Distance(transform.position, targetVector);
+                    //Move towards player when too far away
+                    if (distanceToPlayer >= 2 && !isAttackActive)
+                    {
+                        anim.Play("Run");
+                        transform.LookAt(destination);
+                        nma.SetDestination(targetVector);
+                    }
+                    //Start attacking if close to player
+                    else if (distanceToPlayer <= 2 && !isAttackActive)
+                    {
+                        isAttackActive = true;
+                        if (isAttackActive)
+                        {
+                            StartCoroutine("meleeAttack");
+                        }
+                    }
+                }
+
+            }
+        }
+        if(transform.GetComponent<EnemyStats>().health <= 25)
+        {
+            phase5 = true;
+            StopCoroutine("meleeAttack");
+            StartCoroutine("enraged");
+
+        }
     }
 
 
@@ -247,12 +291,14 @@ public class CorruptedKing : MonoBehaviour
             anim.Play("Phase4");
             spawn1.SetActive(true);
             spawn2.SetActive(true);
-            wof1.SetActive(true);
-            wof2.SetActive(true);
+            WallOfFire.SetActive(true);
             enemy1.SetActive(true);
             enemy2.SetActive(true);
-            yield return new WaitForSeconds(3f);
-            yield return null;
+            yield return new WaitForSeconds(1.5f);
+            Camera.main.GetComponent<CameraBehaviour>().player = player;
+            phase4 = true;
+            isAttackActive = false;
+            StopCoroutine("phase4Fight");
         }
     }
 
@@ -273,5 +319,22 @@ public class CorruptedKing : MonoBehaviour
         }
 
 
+    }
+
+    public IEnumerator enraged()
+    {
+        while (true)
+        {
+            anim.Play("Enraged");
+            nma.SetDestination(transform.position);
+            transform.LookAt(destination);
+            yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+            isAttackActive = false;
+
+            destination.GetComponent<PlayerStats>().health -= transform.GetComponent<EnemyStats>().damage;
+
+            StopCoroutine("enraged");
+
+        }
     }
 }

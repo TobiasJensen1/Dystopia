@@ -9,9 +9,11 @@ public class MeteorCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.collider.tag);
         if(collision.collider.tag == "Wall")
         {
             transform.gameObject.SetActive(false);
+            meteorCheck = true;
         }
         if(collision.collider.tag == "Player")
         {
