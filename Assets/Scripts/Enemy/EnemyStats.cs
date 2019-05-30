@@ -12,6 +12,7 @@ public class EnemyStats : MonoBehaviour
 
     public float damage;
     public float aggroRange;
+    public float xp;
 
     GameObject player;
     float distanceToPlayer;
@@ -71,6 +72,7 @@ public class EnemyStats : MonoBehaviour
             if (enemies.Contains(transform.gameObject))
             {
                 enemies.Remove(transform.gameObject);
+                GameObject.Find("Canvas").transform.Find("PlayerGui").transform.Find("XpBar").GetComponent<XpScript>().xp += xp;
             }
 
             //used for Necromancers/Summoners
