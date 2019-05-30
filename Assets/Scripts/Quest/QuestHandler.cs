@@ -260,38 +260,38 @@ public class QuestHandler : MonoBehaviour
         }
     }
 
-            public void openInformationwindow(QuestEvent questevent)
+    public void openInformationwindow(QuestEvent questevent)
+    {
+        questevent.isActive = true;
+
+        if (!questevent.isComplete)
+        {
+            player.GetComponent<Animator>().Play("Idle");
+            player.GetComponent<PlayerMovement>().moveTo = player.transform.position;
+            informationWindowActive = true;
+            title.GetComponent<Text>().text = questevent.EventName;
+            information.GetComponent<Text>().text = questevent.eventInformation;
+            informationWindow.SetActive(true);
+            questevent.isComplete = true;
+
+
+        }
+        else
+        {
+            informationWindowActive = true;
+            if (questevent.EventName == "Talk to Asshina")
             {
-                questevent.isActive = true;
-
-                if (!questevent.isComplete)
-                {
-                    player.GetComponent<Animator>().Play("Idle");
-                    player.GetComponent<PlayerMovement>().moveTo = player.transform.position;
-                    informationWindowActive = true;
-                    title.GetComponent<Text>().text = questevent.EventName;
-                    information.GetComponent<Text>().text = questevent.eventInformation;
-                    informationWindow.SetActive(true);
-                    questevent.isComplete = true;
-
-
-                }
-                else
-                {
-                    informationWindowActive = true;
-                    if (questevent.EventName == "Talk to Asshina")
-                    {
-                        questevent.eventInformation = "I would suggest you head to the nearby tavern to get some sleep, before you head north into the Blossom Valley. Just go upstairs in the Tavern, the King made sure to book a room for you.";
-                    }
-                    if (questevent.EventName == "Sleep at the Tavern")
-                    {
-                        questevent.eventInformation = "The King only booked the room for one night, you will have to move onwards. He is expecting your arrival at the City, past the Blossom Valley to the north.";
-                    }
-                    title.GetComponent<Text>().text = questevent.EventName;
-                    information.GetComponent<Text>().text = questevent.eventInformation;
-                    informationWindow.SetActive(true);
-                }
+                questevent.eventInformation = "I would suggest you head to the nearby tavern to get some sleep, before you head north into the Blossom Valley. Just go upstairs in the Tavern, the King made sure to book a room for you.";
             }
+            if (questevent.EventName == "Sleep at the Tavern")
+            {
+                questevent.eventInformation = "The King only booked the room for one night, you will have to move onwards. He is expecting your arrival at the City, past the Blossom Valley to the north.";
+            }
+            title.GetComponent<Text>().text = questevent.EventName;
+            information.GetComponent<Text>().text = questevent.eventInformation;
+            informationWindow.SetActive(true);
+        }
+    }
 
 
 
@@ -315,4 +315,4 @@ public class QuestHandler : MonoBehaviour
         }
     }
 
-        }
+}

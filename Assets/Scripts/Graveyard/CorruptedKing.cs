@@ -18,6 +18,8 @@ public class CorruptedKing : MonoBehaviour
     bool attack;
     bool isAttackActive;
 
+
+    //State machine ????
     //until 75% health
     bool phase1;
     //meteor
@@ -79,7 +81,9 @@ public class CorruptedKing : MonoBehaviour
         }
         //Fight up until meteor has hit
         corruptedKingFight1();
+        //fight up until spawns have died
         corruptedKingFight2();
+        //fight up until enrage mode
         corruptedKingFight3();
     }
 
