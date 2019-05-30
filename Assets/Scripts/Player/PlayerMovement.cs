@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool combat;
 
     bool informationWindowActive;
-     bool cutScene;
+    bool cutScene;
 
 
     // Start is called before the first frame update
@@ -39,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         GetComponent<Animator>().Play("Idle");
-        transform.position = new Vector3(135, 15, 160);
-        moveTo = Vector3.MoveTowards(transform.position, new Vector3(135, 15, 160), speed * Time.deltaTime);
+        transform.position = new Vector3(-35, height, -25);
+        moveTo = Vector3.MoveTowards(transform.position, new Vector3(-35, height, -25), speed * Time.deltaTime);
     }
 
     // Update is called once per frame

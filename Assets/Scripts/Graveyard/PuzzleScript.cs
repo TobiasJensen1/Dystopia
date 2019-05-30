@@ -24,6 +24,9 @@ public class PuzzleScript : MonoBehaviour
     public  bool leverB;
     public  bool leverC;
     bool isactive;
+
+    //Enable CorruptedKing
+    public GameObject cKing;
     
     // Start is called before the first frame update
     void Start()
@@ -84,6 +87,7 @@ public class PuzzleScript : MonoBehaviour
             //Transport player to tombboss
             if (Input.GetMouseButtonDown(0) && hit.collider.name == "dungeonEntrance" && distance <= 4)
             {
+                cKing.SetActive(true);
                 GameObject.Find("Player").transform.position = new Vector3(175, 15, 232);
                 GameObject.Find("Player").GetComponent<PlayerMovement>().moveTo = Vector3.MoveTowards(transform.position, new Vector3(175, 15, 232), 5 * Time.deltaTime);
             }

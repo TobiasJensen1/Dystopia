@@ -28,6 +28,7 @@ public class QuestHandler : MonoBehaviour
     public bool e;
     public bool r;
     public bool potions;
+    public bool armor;
 
     public GameObject worldLight;
     public bool firstQuestAccepted;
@@ -255,6 +256,19 @@ public class QuestHandler : MonoBehaviour
                     objList.GetComponent<Text>().text += "\n • " + questEvents[6].EventName;
                     openInformationwindow(questEvents[6]);
 
+                }
+            }
+            //BlackSmith
+            if (Input.GetMouseButtonDown(0) && hit.transform.name == "Gimli")
+            {
+                questChar = hit.transform.gameObject;
+            }
+
+            if (questChar != null)
+            {
+                if (distance <= 3 && questChar.name == "Gimli")
+                {
+                    armor = true;
                 }
             }
         }

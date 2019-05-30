@@ -30,6 +30,12 @@ public class Combat : MonoBehaviour
     bool e;
     bool r;
     bool potions;
+    bool armor;
+
+    //Used to show/hide potions and armor icons from canvas
+    public GameObject healthPotIcon;
+    public GameObject furyPotIcon;
+    public GameObject armorIcon;
 
     bool aoe;
     List<GameObject> enemies;
@@ -59,6 +65,7 @@ public class Combat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        armor = quest.GetComponent<QuestHandler>().armor; 
         potions = quest.GetComponent<QuestHandler>().potions;
 
 
@@ -85,8 +92,21 @@ public class Combat : MonoBehaviour
 
     void usePotion()
     {
+        if (armor)
+        {
+            if (!armorIcon.activeSelf)
+            {
+                armorIcon.SetActive(true);
+            }
+        }
         if (potions)
         {
+            //Shows potion tabs in canvas
+            if(!healthPotIcon.activeSelf && !furyPotIcon.activeSelf)
+            {
+                healthPotIcon.SetActive(true);
+                furyPotIcon.SetActive(true);
+            }
             //Healthpot
             if (Input.GetKey("1"))
             {
