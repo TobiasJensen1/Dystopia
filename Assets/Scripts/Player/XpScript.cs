@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class XpScript : MonoBehaviour
 {
-   PlayerStats Player_level;
-   public Image barImage;
+    PlayerStats Player_level;
+    public Image barImage;
+    public GameObject text;
+
     const int max_XP = 100;
     public float xp;
+
+
     
 
 
@@ -37,6 +41,8 @@ public class XpScript : MonoBehaviour
             print(Player_level.level);
             xp = xp - 100;
         }
+
+        text.GetComponent<Text>().text = ""+Player_level.level;
     }
 
 
