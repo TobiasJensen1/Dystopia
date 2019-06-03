@@ -7,6 +7,7 @@ public class ZoneScript : MonoBehaviour
 {
     bool isHabour;
     public Text text;
+    public GameObject Sound;
 
 
      void Start()
@@ -24,6 +25,7 @@ public class ZoneScript : MonoBehaviour
                 text.GetComponent<Text>().text = "Blossom Valley";
                 isHabour = true;
                 StartCoroutine("textanimation");
+                Sound.GetComponent<AudioSource>().clip = null;    
             }
             else
             {
